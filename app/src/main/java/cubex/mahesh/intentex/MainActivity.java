@@ -32,8 +32,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
+ Intent i = new Intent(this,
+         WelcomeActivity.class);
+ EditText et2 = findViewById(R.id.et2);
+ EditText et3 = findViewById(R.id.et3);
+ i.putExtra("name",et2.getText().toString());
+ i.putExtra("qual",et3.getText().toString());
+        startActivity(i);
     }
 
     public void whatsapp(View view) {
+        Intent i = getPackageManager().
+   getLaunchIntentForPackage("in.redbus.android");
+        if(i!=null) {
+            startActivity(i);
+        }else {
+            Intent i1 = new Intent( );
+            i1.setAction(Intent.ACTION_VIEW);
+            i1.setData(Uri.parse(
+  "https://play.google.com/store/apps/details?id=in.redbus.android"));
+            startActivity(i1);
+        }
     }
 }
